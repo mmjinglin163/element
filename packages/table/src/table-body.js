@@ -274,7 +274,7 @@ export default {
         const tooltip = this.$refs.tooltip;
         // TODO 会引起整个 Table 的重新渲染，需要优化
         this.tooltipContent = cell.innerText || cell.textContent;
-        tooltip.referenceElm = cell;
+        tooltip.referenceElm = cell.children[0];
         tooltip.$refs.popper && (tooltip.$refs.popper.style.display = 'none');
         tooltip.doDestroy();
         tooltip.setExpectedState(true);

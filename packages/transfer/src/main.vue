@@ -12,7 +12,6 @@
     </transfer-panel>
     <div class="el-transfer__buttons">
       <el-button
-        type="primary"
         :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
         @click.native="addToLeft"
         :disabled="rightChecked.length === 0">

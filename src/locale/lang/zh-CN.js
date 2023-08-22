@@ -71,7 +71,7 @@ export default {
       noData: '暂无数据'
     },
     pagination: {
-      goto: '前往',
+      goto: '跳至',
       pagesize: '条/页',
       total: '共 {total} 条',
       pageClassifier: '页'
@@ -104,7 +104,8 @@ export default {
       titles: ['列表 1', '列表 2'],
       filterPlaceholder: '请输入搜索内容',
       noCheckedFormat: '共 {total} 项',
-      hasCheckedFormat: '已选 {checked}/{total} 项'
+      hasCheckedFormat: '已选 {checked}/{total} 项',
+      titleSuffix: '项'
     },
     image: {
       error: '加载失败'

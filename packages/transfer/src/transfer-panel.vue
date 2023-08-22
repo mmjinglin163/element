@@ -5,8 +5,8 @@
         v-model="allChecked"
         @change="handleAllCheckedChange"
         :indeterminate="isIndeterminate">
-        {{ title }}
-        <span>{{ checkedSummary }}</span>
+        <span class="el-transfer-panel__subtitle">{{ checkedSummary }}</span>
+        <span  class="el-transfer-panel__title">{{ title }}</span>
       </el-checkbox>
     </p>
     
@@ -192,7 +192,7 @@
             ? hasChecked.replace(/\${checked}/g, checkedLength).replace(/\${total}/g, dataLength)
             : noChecked.replace(/\${total}/g, dataLength);
         } else {
-          return `${ checkedLength }/${ dataLength }`;
+          return `${ checkedLength }/${ dataLength }` + this.t('el.transfer.titleSuffix');
         }
       },
 

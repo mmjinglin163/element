@@ -1,6 +1,6 @@
-@import "../mixins/mixins";
-@import "../common/var";
-@import "../common/transition";
+@import '../mixins/mixins';
+@import '../common/var';
+@import '../common/transition';
 
 @include b(date-editor) {
   position: relative;
@@ -44,12 +44,16 @@
     cursor: pointer;
   }
 
+  .el-input__icon_picker {
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
   .el-range__icon {
     font-size: 14px;
-    margin-left: -5px;
+    // margin-left: -5px;
     color: $--color-text-placeholder;
-    float: left;
-    line-height: 32px;
   }
 
   .el-range-input {
@@ -60,8 +64,8 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    width: 39%;
-    text-align: center;
+    width: 100%;
+    text-align: left;
     font-size: $--font-size-base;
     color: $--color-text-regular;
 
@@ -70,13 +74,25 @@
     }
   }
 
+  .range-placeholder {
+    display: inline-block;
+    width: 100%;
+    color: $--color-text-placeholder;
+    text-align: left;
+  }
+  .range-content {
+    display: inline-block;
+    width: 100%;
+    color: $--color-text-regular;
+    text-align: left;
+  }
+
   .el-range-separator {
     display: inline-block;
     height: 100%;
-    padding: 0 5px;
+    padding: 0;
     margin: 0;
     text-align: center;
-    line-height: 32px;
     font-size: 14px;
     width: 5%;
     color: $--color-text-primary;
@@ -85,10 +101,7 @@
   .el-range__close-icon {
     font-size: 14px;
     color: $--color-text-placeholder;
-    width: 25px;
     display: inline-block;
-    float: right;
-    line-height: 32px;
   }
 }
 
@@ -97,10 +110,6 @@
     display: inline-flex;
     align-items: center;
     padding: 3px 10px;
-  }
-
-  .el-range-input {
-    line-height: 1;
   }
 
   @include when(active) {
@@ -117,17 +126,17 @@
     }
 
     .el-range-separator {
-      line-height: 28px;
       font-size: $--input-medium-font-size;
     }
 
     .el-range-input {
       font-size: $--input-medium-font-size;
     }
-
-    .el-range__icon,
-    .el-range__close-icon {
-      line-height: 28px;
+    .range-content {
+      font-size: $--input-medium-font-size;
+    }
+    .range-placeholder {
+      font-size: $--input-medium-font-size;
     }
   }
 
@@ -144,10 +153,11 @@
     .el-range-input {
       font-size: $--input-small-font-size;
     }
-
-    .el-range__icon,
-    .el-range__close-icon {
-      line-height: 24px;
+    .range-placeholder {
+      font-size: $--input-small-font-size;
+    }
+    .range-content {
+      font-size: $--input-small-font-size;
     }
   }
 
@@ -164,10 +174,11 @@
     .el-range-input {
       font-size: $--input-mini-font-size;
     }
-
-    .el-range__icon,
-    .el-range__close-icon {
-      line-height: 20px;
+    .range-placeholder {
+      font-size: $--input-mini-font-size;
+    }
+    .range-content {
+      font-size: $--input-mini-font-size;
     }
   }
 
@@ -177,7 +188,8 @@
     color: $--input-disabled-color;
     cursor: not-allowed;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       border-color: $--input-disabled-border;
     }
 

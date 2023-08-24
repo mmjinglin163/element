@@ -1,13 +1,22 @@
 <template>
-  <div style="margin: 20px;">
+  <div style="margin: 20px;width:600px;">
     <!-- <el-input v-model="input" placeholder="请输入内容"></el-input> -->
-       <el-date-picker
+    <el-date-picker
+       size="medium"
       v-model="value1"
       type="daterange"
       range-separator="~"
-      placeholder="请选择时间范围">
+      placeholder="请选择时间范围"
+      style="width:220px;">
     </el-date-picker>
-
+    <div>
+     <el-date-picker
+      type="dates"
+      v-model="value2"
+      placeholder="选择一个或多个日期">
+    </el-date-picker>
+    </div>
+  
      <el-table
       :data="tableData"
       style="width: 100%">
@@ -22,8 +31,13 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="address" show-overflow-tooltip
+        prop="address" 
         label="地址">
+        <template scope="scope">
+          <el-tooltip effect="dark" :content="scope.row.address" placement="top" :hide-after="0" trigger="hover">
+            <div class="text_ellipsis">{{scope.row.address}}</div>
+          </el-tooltip>
+        </template>
       </el-table-column>
     </el-table>
 
@@ -48,6 +62,7 @@
       return {
         input: 'Hello Element UI!',
         value1:"",
+        value2:"",
         tableData: [{
             date: '2016-05-02',
             name: '王小虎',
@@ -72,3 +87,11 @@
     }
   };
 </script>
+<style scoped>
+.text_ellipsis{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:100%;
+}
+</style>

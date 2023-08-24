@@ -47,50 +47,30 @@
     ref="reference"
     v-clickoutside="handleClose"
     v-else>
-    <div  class="rangle-tip" v-if="!displayValue">
-      <span>{{placeholder}}</span>
-      <i slot="suffix"
-        class="el-input__icon"
-        :class="triggerClass"
-        @click="handleFocus">
-      </i>
-    </div>
-    <div class="rangle-content" v-else>
-      <input
+    <template v-if="!displayValue">
+      <span
         autocomplete="off"
-        :placeholder="startPlaceholder"
-        :value="displayValue && displayValue[0]"
+        :placeholder="placeholder"
         :disabled="pickerDisabled"
-        v-bind="firstInputId"
-        :readonly="!editable || readonly"
+        readonly
         :name="name && name[0]"
-        @input="handleStartInput"
-        @change="handleStartChange"
         @focus="handleFocus"
-        class="el-range-input">
-      <slot name="range-separator">
-        <span class="el-range-separator">{{ rangeSeparator }}</span>
-      </slot>
-      <input
+        class="range-placeholder">{{placeholder}}</span>
+      <i :class="['el-input__icon_picker', 'el-range__icon', triggerClass]"  @click="handleFocus"></i>
+    </template>
+    <template v-else>
+      <span
         autocomplete="off"
-        :placeholder="endPlaceholder"
-        :value="displayValue && displayValue[1]"
         :disabled="pickerDisabled"
-        v-bind="secondInputId"
-        :readonly="!editable || readonly"
-        :name="name && name[1]"
-        @input="handleEndInput"
-        @change="handleEndChange"
+        :name="name && name[0]"
         @focus="handleFocus"
-        class="el-range-input">
+        class="range-content">{{rangleValue}}</span>
       <i
         @click="handleClickIcon"
         v-if="haveTrigger"
-        :class="[showClose ? '' + clearIcon : '']"
-        class="el-input__icon el-range__close-icon">
+        class="el-input__icon_picker el-range__close-icon el-icon-error">
       </i>
-      <i :class="['el-input__icon', 'el-range__icon', triggerClass]"></i>
-    </div>
+    </template>
 
   </div>
 </template>
@@ -557,7 +537,9 @@ export default {
         return '';
       }
     },
-
+    rangleValue() {
+      return this.displayValue && this.displayValue.length > 1 ? this.displayValue.join(' ' + this.rangeSeparator + ' ') : this.displayValue;
+    },
     parsedValue() {
       if (!this.value) return this.value; // component value is not set
       if (this.type === 'time-select') return this.value; // time-select does not require parsing, this might change in next major version
